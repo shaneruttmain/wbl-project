@@ -1,121 +1,63 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import './App.css' // Load the styling for this component
+
+// Simple data for the cards shown on the page
+const cards = [
+  { title: 'Sunrise', text: 'Bright ideas at the start of the day.' },
+  { title: 'Forest', text: 'Calm colors and quiet, natural energy.' },
+  { title: 'City', text: 'A little chaos with a strong point of view.' },
+]
+
+// Simple list of items for the bottom section
+const things = ['Brainrot', 'Music', 'Videogames', 'Food']
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="page">
+      <header className="header">
+        <h1>Random Website</h1>
+        <nav className="nav">
+          <a href="#home">Home</a>
+          <a href="#ideas">Ideas</a>
+          <a href="#list">List</a>
+        </nav>
+      </header>
 
-      <div className="ticks"></div>
+      <main>
+        <section className="hero" id="home">
+          <div className="hero-text">
+            <p className="tag">Basic reference page</p>
+            <h2>Make something simple and memorable.</h2>
+            <p>
+              This page is a basic website example. It has a header, a dumb shortcut navigation system,
+              some buttons, and a small list.
+            </p>
+            <button type="button">Click me</button>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+          <div className="hero-box">
+            <span>Sample box</span>
+          </div>
+        </section>
+
+        <section className="card-section" id="ideas">
+          {cards.map((card) => (
+            <article key={card.title} className="card">
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="list-section" id="list">
+          <h3>Things I like</h3>
           <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
+            {things.map((thing) => (
+              <li key={thing}>{thing}</li>
+            ))}
           </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        </section>
+      </main>
+    </div>
   )
 }
 
